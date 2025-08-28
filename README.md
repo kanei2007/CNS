@@ -1,4 +1,4 @@
-## EX. NO: 1 : IMPLEMENTATION OF CAESAR CIPHER
+<img width="1914" height="1035" alt="image" src="https://github.com/user-attachments/assets/c4984f6a-e0e3-490e-aa7f-400bdd440f51" />## EX. NO: 1 : IMPLEMENTATION OF CAESAR CIPHER
  
 
 ## AIM:
@@ -27,30 +27,47 @@ becomes C. To change a message back, each letter is replaced by the one three be
 ### STEP-5: Display the cipher text obtained above.
 
 
-PROGRAM :-
+PROGRAM :
 #include <stdio.h>
 #include <string.h>
-void caesarCipher(char *text, int shift) 
-{
-    for (int i = 0; text[i]; i++) 
-    {
-        if (text[i] >= 'U' && text[i] <= 'K')
-        text[i] = ((text[i]- 'U' + shift) % 11) + 'K';
+
+
+void caesarEncrypt(char *text, int key) {
+    for (int i = 0; text[i] != '\0'; i++) {
+        char c = text[i];
+       
+        if (c >= 'A' && c <= 'Z') {
+            text[i] = ((c - 'A' + key) % 26 + 26) % 26 + 'A';
+        }
         
+        else if (c >= 'a' && c <= 'z') {
+            text[i] = ((c - 'a' + key) % 26 + 26) % 26 + 'a';
+        }
+       
     }
- }
-int main() 
-{
-    char text[] = "KANEIMOZHI";
-    caesarCipher(text, 3);
-    printf("Encrypted Message: %s\n", text);
-    caesarCipher(text,-3);
-    printf("Decrypted Message: %s\n", text);
-    return 0;
-    
 }
 
+int main() {
+    char plaintext[100];
+    int key;
 
+   
+    printf("Enter the plain text: ");
+    fgets(plaintext, sizeof(plaintext), stdin);
+    plaintext[strcspn(plaintext, "\n")] = '\0'; // Remove newline
+
+   
+    printf("Enter key value: ");
+    scanf("%d", &key);
+
+   
+    caesarEncrypt(plaintext, key);
+
+   
+    printf("Cipher Text: %s\n", plaintext);
+
+    return 0;
+}
 OUTPUT :-
-**<img width="1918" height="1036" alt="Screenshot 2025-08-28 135527" src="https://github.com/user-attachments/assets/d620c5fd-eee1-45f0-9eda-37fef7f5fb8a" />
-**
+<img width="1914" height="1035" alt="Screenshot 2025-08-28 140315" src="https://github.com/user-attachments/assets/5e982aab-e48b-4b3e-8d00-05a18fd1d1f0" />
+
